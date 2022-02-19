@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mongodb = require('mongodb').MongoClient;
 
 const { MONGODB_URI } = process.env;

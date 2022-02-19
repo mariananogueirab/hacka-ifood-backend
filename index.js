@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
+const recipesRouter = require('./routes/recipes');
 const errorMiddleware = require('./middlewares/errorMidlleware');
 const user = require('./routes/user.router');
 const login = require('./routes/login.router');
@@ -11,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/recipes', recipesRouter);
 app.use('/user', user);
 app.use('/login', login);
 

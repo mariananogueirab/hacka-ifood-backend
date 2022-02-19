@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { userCreate, restricUpdate } = require('../services/user.services');
 const { created, success } = require('../utils/dictionary/statusCode');
 

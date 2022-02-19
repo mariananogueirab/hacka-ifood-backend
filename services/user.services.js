@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const { create, findUser, updateRestrictions } = require('../models/user.model');
@@ -35,6 +36,8 @@ const userCreate = async (user) => {
   await create(userEncrypt);
 
   const { password: _password, ...userWithoutPassword } = user;
+
+  console.log(user);
 
   const token = generateToken(userWithoutPassword);
 
