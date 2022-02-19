@@ -20,7 +20,11 @@ const getRecipesController = async (_req, res, next) => {
 
 const getRecipesByCategoryController = async (req, res, next) => {
   try {
+    const { cuisine } = req.body;
+    const recipeCategory = await getRecipesByCategoryService(cuisine);
 
+    console.log('controller', recipeCategory);
+    return res.json(200).json(recipeCategory);
   } catch (error) {
     console.log(error);
     next(error);
@@ -29,8 +33,8 @@ const getRecipesByCategoryController = async (req, res, next) => {
 
 const getRecipesByTitleController = async (req, res, next) => {
   try {
-    const { title } = req.body;
-    const recipeTitle = await getRecipesByTitleService(title);
+    const { variavelFront } = req.body;
+    const recipeTitle = await getRecipesByTitleService(variavelFront);
 
     console.log('controller', recipeTitle);
     return res.status(200).json(recipeTitle);

@@ -19,8 +19,8 @@ const getRecipesByCategoryService = async (cuisine) => {
   return recipeCategory;
 };
 
-const getRecipesByTitleService = async (title) => {
-  const recipeTitle = await getRecipesByTitleModel(title);
+const getRecipesByTitleService = async (variavelFront) => {
+  const recipeTitle = await getRecipesByTitleModel(variavelFront);
 
   console.log('service', recipeTitle);
   return recipeTitle;
