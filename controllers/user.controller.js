@@ -15,11 +15,9 @@ const createUser = async (req, res, next) => {
 
 const restrictionsUpdate = async (req, res, next) => {
   try {
-    const restrictions = req.body;
-    const { id } = req.params;
-    const token = await restricUpdate({ id, restrictions });
+    const user = await restricUpdate(req.body);
 
-    return res.status(success).json({ token });
+    return res.status(success).json({ user });
   } catch (error) {
     next(error);
   }
