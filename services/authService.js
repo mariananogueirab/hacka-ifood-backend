@@ -8,12 +8,12 @@ const JWT_CONFIG = {
   algorithm: 'HS256',
 };
 
-const generateToken = (user) => jwt.sign({user}, API_SECRET, JWT_CONFIG);
+const generateToken = (user) => jwt.sign({ user }, API_SECRET, JWT_CONFIG);
 
 const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, API_SECRET);
-    const {user} = decoded;
+    const { user } = decoded;
     return user;
   } catch (error) {
     console.log('FALHA NA VERIFICAÇÃO');
