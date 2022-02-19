@@ -4,9 +4,11 @@ const {
   createRecipeController,
   getRecipesController,
   getRecipesByTitleController,
-} = require('../controllers/recipes');
+  createRecipesController,
+} = require('../controllers/recipes.controller');
 
 router.post('/', createRecipeController);
+router.post('/insert-many', createRecipesController);
 router.get('/:email', getRecipesController);
 router.get('/:title', getRecipesByTitleController);
 

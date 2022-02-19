@@ -8,15 +8,15 @@ const errorHandling = require('../utils/functions/errorHandling');
 const { generateToken } = require('./authService');
 
 const createUserSchema = Joi.object({
-  username: Joi.string().min(5).required(),
+  name: Joi.string().min(5).required(),
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
   password: Joi.string().min(6).required(),
 });
 
-const validateCreateUser = (username, email, password) => {
+const validateCreateUser = (name, email, password) => {
   const { error } = createUserSchema.validate({
-    username, email, password,
+    name, email, password,
   });
   if (error) throw errorHandling(badRequest, error.message);
 };
@@ -27,10 +27,10 @@ const validateUserAlreadyExists = async (email) => {
 };
 
 const userCreate = async (user) => {
-  const { username, email, password } = user;
-  validateCreateUser(username, email, password);
+  const { name, email, password } = user;
+  validateCreateUser(name, email, password);
   const passwordEncript = await bcrypt.hash(password, 10);
-  const userEncrypt = { username, email, password: passwordEncript };
+  const userEncrypt = { name, email, password: passwordEncript };
 
   await validateUserAlreadyExists(email);
   await create(userEncrypt);

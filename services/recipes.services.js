@@ -3,7 +3,8 @@ const {
   createRecipeModel,
   getRecipesModel,
   getRecipesByTitleModel,
-} = require('../models/recipes');
+  createRecipesModel,
+} = require('../models/recipes.model');
 
 const createRecipeService = async (title, ingredients, directions, link, source, NER) => {
   const recipeId = await createRecipeModel(title, ingredients, directions, link, source, NER);
@@ -17,6 +18,10 @@ const createRecipeService = async (title, ingredients, directions, link, source,
     source,
     NER,
   };
+};
+
+const createRecipesService = async (recipes) => {
+  await createRecipesModel(recipes);
 };
 
 const getRecipesService = async (email) => {
@@ -35,4 +40,5 @@ module.exports = {
   createRecipeService,
   getRecipesService,
   getRecipesByTitleService,
+  createRecipesService,
 };

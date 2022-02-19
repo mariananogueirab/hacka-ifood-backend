@@ -4,7 +4,8 @@ const {
   createRecipeService,
   getRecipesService,
   getRecipesByTitleService,
-} = require('../services/recipes');
+  createRecipesService,
+} = require('../services/recipes.services');
 
 const createRecipeController = async (req, res, next) => {
   try {
@@ -15,6 +16,17 @@ const createRecipeController = async (req, res, next) => {
     const newRecipe = await createRecipeService(title, ingredients, directions, link, source, NER);
 
     return res.status(201).json(newRecipe);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+const createRecipesController = async (req, res, next) => {
+  try {
+    await createRecipesService(req.body);
+
+    return res.status(201).json({ message: 'Registered recipes' });
   } catch (error) {
     console.log(error);
     next(error);
@@ -50,4 +62,5 @@ module.exports = {
   createRecipeController,
   getRecipesController,
   getRecipesByTitleController,
+  createRecipesController,
 };
