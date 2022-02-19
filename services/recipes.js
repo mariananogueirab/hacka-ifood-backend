@@ -1,9 +1,20 @@
 /* eslint-disable no-console */
 const {
+  createRecipeModel,
   getRecipesModel,
   getRecipesByCategoryModel,
   getRecipesByTitleModel,
 } = require('../models/recipes');
+
+const createRecipeService = async (cuisine, ingredients) => {
+  const recipeId = await createRecipeModel(cuisine, ingredients);
+
+  return {
+    _id: recipeId,
+    cuisine,
+    ingredients,
+  };
+};
 
 const getRecipesService = async () => {
   const recipes = await getRecipesModel();
@@ -27,6 +38,7 @@ const getRecipesByTitleService = async (variavelFront) => {
 };
 
 module.exports = {
+  createRecipeService,
   getRecipesService,
   getRecipesByCategoryService,
   getRecipesByTitleService,

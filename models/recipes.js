@@ -1,7 +1,18 @@
 /* eslint-disable no-console */
 const connection = require('./connection');
+const { findUser } = require('./user.model');
 
-const getRecipesModel = async () => {
+const createRecipeModel = async (cuisine, ingredients) => {
+  const connect = await connection();
+
+  const { insertedId } = await connect
+    .collection('recipes')
+    .insertOne({ cuisine, ingredients });
+
+  return insertedId;
+};
+
+const getRecipesModel = async (email) => {
   const connect = await connection();
 
   const recipes = await connect
@@ -9,8 +20,13 @@ const getRecipesModel = async () => {
     .find()
     .toArray();
 
-  console.log('model', recipes);
-  return recipes;
+  const { restrictions } = await findUser(email);
+
+  const rest = recipes.map((recipe) => recipe
+    .ingredients.filter((ingredient) => !restrictions.includes(ingredient)));
+
+  console.log('model', rest);
+  return rest;
 };
 
 const getRecipesByCategoryModel = async (cuisine) => {
@@ -36,6 +52,7 @@ const getRecipesByTitleModel = async (variavelFront) => {
 };
 
 module.exports = {
+  createRecipeModel,
   getRecipesModel,
   getRecipesByCategoryModel,
   getRecipesByTitleModel,
