@@ -2,44 +2,37 @@
 const {
   createRecipeModel,
   getRecipesModel,
-  getRecipesByCategoryModel,
   getRecipesByTitleModel,
 } = require('../models/recipes');
 
-const createRecipeService = async (cuisine, ingredients) => {
-  const recipeId = await createRecipeModel(cuisine, ingredients);
+const createRecipeService = async (title, ingredients, directions, link, source, NER) => {
+  const recipeId = await createRecipeModel(title, ingredients, directions, link, source, NER);
 
   return {
     _id: recipeId,
-    cuisine,
+    title,
     ingredients,
+    directions,
+    link,
+    source,
+    NER,
   };
 };
 
 const getRecipesService = async (email) => {
   const recipes = await getRecipesModel(email);
 
-  console.log('service', recipes);
   return recipes;
-};
-
-const getRecipesByCategoryService = async (cuisine) => {
-  const recipeCategory = await getRecipesByCategoryModel(cuisine);
-
-  console.log('service', recipeCategory);
-  return recipeCategory;
 };
 
 const getRecipesByTitleService = async (variavelFront) => {
   const recipeTitle = await getRecipesByTitleModel(variavelFront);
 
-  console.log('service', recipeTitle);
   return recipeTitle;
 };
 
 module.exports = {
   createRecipeService,
   getRecipesService,
-  getRecipesByCategoryService,
   getRecipesByTitleService,
 };

@@ -3,18 +3,18 @@
 const {
   createRecipeService,
   getRecipesService,
-  getRecipesByCategoryService,
   getRecipesByTitleService,
 } = require('../services/recipes');
 
 const createRecipeController = async (req, res, next) => {
   try {
-    const { cuisine, ingredients } = req.body;
+    const {
+      title, ingredients, directions, link, source, NER,
+    } = req.body;
 
-    const newRecipe = await createRecipeService(cuisine, ingredients);
+    const newRecipe = await createRecipeService(title, ingredients, directions, link, source, NER);
 
-    console.log('controller', newRecipe);
-    return res.status(201).json({ newRecipe });
+    return res.status(201).json(newRecipe);
   } catch (error) {
     console.log(error);
     next(error);
@@ -27,21 +27,7 @@ const getRecipesController = async (req, res, next) => {
     console.log(email);
     const recipes = await getRecipesService(email);
 
-    console.log('controller', recipes);
     return res.status(200).json(recipes);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
-};
-
-const getRecipesByCategoryController = async (req, res, next) => {
-  try {
-    const { cuisine } = req.body;
-    const recipeCategory = await getRecipesByCategoryService(cuisine);
-
-    console.log('controller', recipeCategory);
-    return res.json(200).json(recipeCategory);
   } catch (error) {
     console.log(error);
     next(error);
@@ -53,7 +39,6 @@ const getRecipesByTitleController = async (req, res, next) => {
     const { variavelFront } = req.body;
     const recipeTitle = await getRecipesByTitleService(variavelFront);
 
-    console.log('controller', recipeTitle);
     return res.status(200).json(recipeTitle);
   } catch (error) {
     console.log(error);
@@ -64,6 +49,5 @@ const getRecipesByTitleController = async (req, res, next) => {
 module.exports = {
   createRecipeController,
   getRecipesController,
-  getRecipesByCategoryController,
   getRecipesByTitleController,
 };
