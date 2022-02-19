@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const connect = require('./connection');
 
 const DB_COLLECTION = 'Users';
@@ -24,16 +23,16 @@ const findUser = async (email) => {
 
 const updateRestrictions = async (data) => {
   const {
-    restrictions, id,
+    restrictions, email,
   } = data;
   const db = await connect();
   await db.collection(DB_COLLECTION)
-    .updateOne({ _id: ObjectId(id) }, {
+    .updateOne({ email }, {
       $set: {
         restrictions,
       },
     });
-  const newUser = await findUser(id);
+  const newUser = await findUser(email);
   return newUser;
 };
 
