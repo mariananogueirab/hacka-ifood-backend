@@ -2,10 +2,11 @@ module.exports = [
   {
     title: 'No-Bake Nut Cookies',
     ingredients: ['1 c. firmly packed brown sugar', '1/2 c. evaporated milk', '1/2 tsp. vanilla', '1/2 c. broken nuts (pecans)', '2 Tbsp. butter or margarine', '3 1/2 c. bite size shredded rice biscuits'],
-    directions:	['In a heavy 2-quart saucepan, mix brown sugar, nuts, evaporated milk and butter or margarine.', 'Stir over medium heat until mixture bubbles all over top.', 'Boil and stir 5 minutes more. Take off heat.', 'Stir in vanilla and cereal; mix well.', 'Using 2 teaspoons, drop and shape into 30 clusters on wax paper.', 'Let stand until firm, about 30 minutes.'],
+    directions: ['In a heavy 2-quart saucepan, mix brown sugar, nuts, evaporated milk and butter or margarine.', 'Stir over medium heat until mixture bubbles all over top.', 'Boil and stir 5 minutes more. Take off heat.', 'Stir in vanilla and cereal; mix well.', 'Using 2 teaspoons, drop and shape into 30 clusters on wax paper.', 'Let stand until firm, about 30 minutes.'],
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=44874',
     source: 'Gathered',
     NER: ['brown sugar', 'milk', 'vanilla', 'nuts', 'butter', 'bite size shredded rice biscuits'],
+    image: 'https://i.pinimg.com/originals/62/49/18/624918bd9cb58d152378c924ab84c4b0.jpg',
   },
   {
     title: "Jewell Ball'S Chicken",
@@ -14,6 +15,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=699419',
     source: 'Gathered',
     NER: ['beef', 'chicken breasts', 'cream of mushroom soup', 'sour cream'],
+    image: 'https://i.pinimg.com/originals/6f/a5/7e/6fa57e21382d6b766caa5d5100ae8d3e.jpg',
   },
   {
     title: 'Creamy Corn',
@@ -22,6 +24,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=10570',
     source: 'Gathered',
     NER: ['frozen corn', 'cream cheese', 'butter', 'garlic powder', 'salt', 'pepper'],
+    image: 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/14/51/65/YT7AGDKTCil4iR5KmLgK_089%2520creamed%2520corn.jpg',
   },
   {
     title: 'Chicken Funny',
@@ -30,6 +33,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=897570',
     source: 'Gathered',
     NER: ['chicken', 'chicken gravy', 'cream of mushroom soup', 'shredded cheese'],
+    image: 'https://www.rd.com/wp-content/uploads/2017/06/01_wings_You%E2%80%99re-Eating-Chicken-Wings-Totally-Wrong%E2%80%94This-Is-The-Gross-Way-You-Should-Be-Doing-It_374862373_Joshua-Resnick_FT.jpg',
   },
   {
     title: 'Reeses Cups(Candy)',
@@ -38,6 +42,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=659239',
     source: 'Gathered',
     NER: ['peanut butter', 'graham cracker crumbs', 'butter', 'powdered sugar', 'chocolate chips'],
+    image: 'https://i.pinimg.com/originals/cb/b8/9b/cbb89b956774c48630dcdf59beb3fb65.jpg',
   },
   {
     title: 'Cheeseburger Potato Soup',
@@ -46,6 +51,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=20115',
     source: 'Gathered',
     NER: ['baking potatoes', 'extra lean ground beef', 'butter', 'milk', 'salt', 'pepper', 'Cheddar cheese', 'bacon', 'green onion', 'sour cream'],
+    image: 'https://i.pinimg.com/originals/f9/20/f1/f920f1f443d7c71e3a285c631f098e65.jpg',
   },
   {
     title: 'Rhubarb Coffee Cake',
@@ -54,6 +60,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=210288',
     source: 'Gathered',
     NER: ['sugar', 'butter', 'egg', 'buttermilk', 'flour', 'salt', 'soda', 'buttermilk', 'rhubarb', 'vanilla'],
+    image: 'https://www.tastesoflizzyt.com/wp-content/uploads/2021/04/rhubarb-coffee-cake-recipe-1.jpg',
   },
   {
     title: 'Scalloped Corn',
@@ -62,6 +69,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=876969',
     source: 'Gathered',
     NER: ['cream-style corn', 'whole kernel corn', 'crackers', 'egg', 'butter', 'pepper'],
+    image: 'https://i.pinimg.com/originals/58/1c/12/581c12b8ec9a4916ff9d2b449ec9a32a.jpg',
   },
   {
     title: "Nolan'S Pepper Steak",
@@ -70,6 +78,7 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=375254',
     source: 'Gathered',
     NER: ['tomatoes', 'water', 'onions', 'Worcestershire sauce', 'green peppers', 'oil'],
+    image: 'https://i.pinimg.com/originals/fa/62/54/fa625493ef882c935aa0f58dba7b9037.jpg',
   },
   {
     title: 'Millionaire Pie',
@@ -78,5 +87,6 @@ module.exports = [
     link: 'www.cookbooks.com/Recipe-Details.aspx?id=794547',
     source: 'Gathered',
     NER: ['pineapple', 'condensed milk', 'lemons', 'pecans', 'graham cracker crusts'],
+    image: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/02/Banoffee-Pie-09.jpg',
   },
 ];
