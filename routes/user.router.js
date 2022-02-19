@@ -6,6 +6,6 @@ const auth = require('../middlewares/auth');
 const router = express.Router();
 
 router.post('/', createUser);
-router.put('/restrictions/:id', auth, restrictionsUpdate);
+router.put('/restrictions/', auth, restrictionsUpdate);
 
 module.exports = router;
