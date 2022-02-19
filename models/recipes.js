@@ -24,12 +24,12 @@ const getRecipesByCategoryModel = async (cuisine) => {
   return recipeCategory;
 };
 
-const getRecipesByTitleModel = async (title) => {
+const getRecipesByTitleModel = async () => {
   const connect = await connection();
 
   const recipeTitle = await connect
     .collection('recipes')
-    .findAll({ title });
+    .find({ title: { $regex: /${variavel}/i } });
 
   console.log('model', recipeTitle);
   return recipeTitle;

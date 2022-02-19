@@ -1,6 +1,10 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
-const { getRecipesService } = require('../services/recipes');
+const {
+  getRecipesService,
+  getRecipesByCategoryService,
+  getRecipesByTitleService,
+} = require('../services/recipes');
 
 const getRecipesController = async (_req, res, next) => {
   try {
@@ -14,4 +18,30 @@ const getRecipesController = async (_req, res, next) => {
   }
 };
 
-module.exports = { getRecipesController };
+const getRecipesByCategoryController = async (req, res, next) => {
+  try {
+
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+const getRecipesByTitleController = async (req, res, next) => {
+  try {
+    const { title } = req.body;
+    const recipeTitle = await getRecipesByTitleService(title);
+
+    console.log('controller', recipeTitle);
+    return res.status(200).json(recipeTitle);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+module.exports = {
+  getRecipesController,
+  getRecipesByCategoryController,
+  getRecipesByTitleController,
+};

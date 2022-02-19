@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
-const { getRecipesModel } = require('../models/recipes');
+const {
+  getRecipesModel,
+  getRecipesByCategoryModel,
+  getRecipesByTitleModel,
+} = require('../models/recipes');
 
 const getRecipesService = async () => {
   const recipes = await getRecipesModel();
@@ -8,6 +12,22 @@ const getRecipesService = async () => {
   return recipes;
 };
 
+const getRecipesByCategoryService = async (cuisine) => {
+  const recipeCategory = await getRecipesByCategoryModel(cuisine);
+
+  console.log('service', recipeCategory);
+  return recipeCategory;
+};
+
+const getRecipesByTitleService = async (title) => {
+  const recipeTitle = await getRecipesByTitleModel(title);
+
+  console.log('service', recipeTitle);
+  return recipeTitle;
+};
+
 module.exports = {
   getRecipesService,
+  getRecipesByCategoryService,
+  getRecipesByTitleService,
 };
