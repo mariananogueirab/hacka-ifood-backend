@@ -8,7 +8,7 @@ const {
 } = require('../controllers/recipes');
 
 router.post('/', createRecipeController);
-router.get('/', getRecipesController);
+router.get('/:email', getRecipesController);
 router.get('/:cuisine', getRecipesByCategoryController);
 router.get('/:title', getRecipesByTitleController);
 

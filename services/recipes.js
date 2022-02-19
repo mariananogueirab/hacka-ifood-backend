@@ -16,8 +16,8 @@ const createRecipeService = async (cuisine, ingredients) => {
   };
 };
 
-const getRecipesService = async () => {
-  const recipes = await getRecipesModel();
+const getRecipesService = async (email) => {
+  const recipes = await getRecipesModel(email);
 
   console.log('service', recipes);
   return recipes;

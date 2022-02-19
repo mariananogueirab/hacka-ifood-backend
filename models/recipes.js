@@ -20,12 +20,17 @@ const getRecipesModel = async (email) => {
     .find()
     .toArray();
 
+  // console.log('model', recipes[0].ingredients);
+
   const { restrictions } = await findUser(email);
 
-  const rest = recipes.map((recipe) => recipe
-    .ingredients.filter((ingredient) => !restrictions.includes(ingredient)));
+  // console.log('rest', restrictions);
 
-  console.log('model', rest);
+  const rest = recipes
+    .filter((recipe) => !recipe.ingredients
+      .some((ingredient) => restrictions
+        .includes(ingredient)));
+
   return rest;
 };
 

@@ -21,9 +21,11 @@ const createRecipeController = async (req, res, next) => {
   }
 };
 
-const getRecipesController = async (_req, res, next) => {
+const getRecipesController = async (req, res, next) => {
   try {
-    const recipes = await getRecipesService();
+    const { email } = req.params;
+    console.log(email);
+    const recipes = await getRecipesService(email);
 
     console.log('controller', recipes);
     return res.status(200).json(recipes);
