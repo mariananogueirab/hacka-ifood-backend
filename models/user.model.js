@@ -3,14 +3,9 @@ const connect = require('./connection');
 const DB_COLLECTION = 'Users';
 
 const create = async (user) => {
-  const {
-    name, email, password, restrictions,
-  } = user;
   const db = await connect();
   const { insertedId } = await db.collection(DB_COLLECTION)
-    .insertOne({
-      name, email, password, restrictions,
-    });
+    .insertOne({ ...user, restrictions: [] });
   return insertedId;
 };
 

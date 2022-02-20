@@ -2,7 +2,6 @@
 const {
   createRecipeModel,
   getRecipesModel,
-  getRecipesByTitleModel,
   createRecipesModel,
   findRecipeById,
 } = require('../models/recipes.model');
@@ -23,10 +22,14 @@ const getRecipesService = async (email) => {
   return recipes;
 };
 
-const getRecipesByTitleService = async (variavelFront) => {
-  const recipeTitle = await getRecipesByTitleModel(variavelFront);
+const getRecipesByTitleService = async (data) => {
+  const { email, filter } = data;
 
-  return recipeTitle;
+  const recipes = await getRecipesService(email);
+
+  const recipesByTitle = recipes.filter(({ title }) => title.match(filter));
+
+  return recipesByTitle;
 };
 
 const getRecipeById = async (id) => {

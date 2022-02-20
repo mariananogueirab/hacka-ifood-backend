@@ -45,16 +45,6 @@ const getRecipesModel = async (email) => {
   return restrictionRecipes;
 };
 
-const getRecipesByTitleModel = async (variavelFront) => {
-  const connect = await connection();
-
-  const recipeTitle = await connect
-    .collection(DB_COLLECTION)
-    .find({ title: { $regex: `/${variavelFront}/i` } });
-
-  return recipeTitle;
-};
-
 const findRecipeById = async (id) => {
   const db = await connection();
   const task = await db.collection(DB_COLLECTION)
@@ -66,7 +56,6 @@ const findRecipeById = async (id) => {
 module.exports = {
   createRecipeModel,
   getRecipesModel,
-  getRecipesByTitleModel,
   createRecipesModel,
   findRecipeById,
 };

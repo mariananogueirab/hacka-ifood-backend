@@ -5,6 +5,7 @@ const { created, success } = require('../utils/dictionary/statusCode');
 const createUser = async (req, res, next) => {
   try {
     const user = req.body;
+    console.log(user)
     const token = await userCreate(user);
 
     return res.status(created).json({ token });

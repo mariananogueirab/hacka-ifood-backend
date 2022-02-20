@@ -41,8 +41,10 @@ const getRecipesController = async (req, res, next) => {
 
 const getRecipesByTitleController = async (req, res, next) => {
   try {
-    const { variavelFront } = req.body;
-    const recipeTitle = await getRecipesByTitleService(variavelFront);
+    const { filter } = req.query;
+    const { email } = req.user;
+    console.log(filter);
+    const recipeTitle = await getRecipesByTitleService({ filter, email });
 
     return res.status(200).json(recipeTitle);
   } catch (error) {

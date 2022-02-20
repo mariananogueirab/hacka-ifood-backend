@@ -12,11 +12,12 @@ const createUserSchema = Joi.object({
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
   password: Joi.string().min(6).required(),
+  address: Joi.string().min(5).required(),
 });
 
-const validateCreateUser = (name, email, password) => {
+const validateCreateUser = (name, email, password, address) => {
   const { error } = createUserSchema.validate({
-    name, email, password,
+    name, email, password, address,
   });
   if (error) throw errorHandling(badRequest, error.message);
 };
@@ -27,17 +28,19 @@ const validateUserAlreadyExists = async (email) => {
 };
 
 const userCreate = async (user) => {
-  const { name, email, password } = user;
-  validateCreateUser(name, email, password);
+  const {
+    name, email, password, address,
+  } = user;
+  validateCreateUser(name, email, password, address);
   const passwordEncript = await bcrypt.hash(password, 10);
-  const userEncrypt = { name, email, password: passwordEncript };
+  const userEncrypt = {
+    name, email, password: passwordEncript, address,
+  };
 
   await validateUserAlreadyExists(email);
   await create(userEncrypt);
 
   const { password: _password, ...userWithoutPassword } = user;
-
-  console.log(user);
 
   const token = generateToken(userWithoutPassword);
 

@@ -21,6 +21,7 @@ Cadastrar um usuário novo;
 Fazer login;
 Cadastro de restrições alimentares;
 Sugestão de receitas;
+Detalhes de uma receita;
 
 ---
 
@@ -45,12 +46,18 @@ Sugestão de receitas;
 
 ## Modo de utilização
 
-A API consta com 4 rotas principais: 
+A API consta com 3 rotas principais: 
 * `/user`
   * `/` [`POST`]  Cria um novo usuário;
   * `/restrictions` [`PUT`] Atualiza as restrições alimentares;
 * `/login`
   * `/` [`POST`]  Faz login;
+* `/recipes`
+  * `/` [`POST`]  Cria uma nova receita;
+  * `/insert-many` [`POST`] Cria várias receitas de uma vez;
+  * `/all` [`GET`] Exibe todas as receitas de acordo com o perfil do usuário;
+  * `/:id` [`GET`] Exibe os detalhes de uma receita;
+  * `/` [`GET`]  Exibe as receitas filtradas de acordo com o título;
 
 ---
 
