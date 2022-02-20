@@ -4,20 +4,13 @@ const {
   getRecipesModel,
   getRecipesByTitleModel,
   createRecipesModel,
+  findRecipeById,
 } = require('../models/recipes.model');
 
-const createRecipeService = async (title, ingredients, directions, link, source, NER) => {
-  const recipeId = await createRecipeModel(title, ingredients, directions, link, source, NER);
+const createRecipeService = async (recipe) => {
+  const recipeId = await createRecipeModel(recipe);
 
-  return {
-    _id: recipeId,
-    title,
-    ingredients,
-    directions,
-    link,
-    source,
-    NER,
-  };
+  return recipeId;
 };
 
 const createRecipesService = async (recipes) => {
@@ -36,9 +29,15 @@ const getRecipesByTitleService = async (variavelFront) => {
   return recipeTitle;
 };
 
+const getRecipeById = async (id) => {
+  const recipe = findRecipeById(id);
+  return recipe;
+};
+
 module.exports = {
   createRecipeService,
   getRecipesService,
   getRecipesByTitleService,
   createRecipesService,
+  getRecipeById,
 };

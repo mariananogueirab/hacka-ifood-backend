@@ -1,17 +1,16 @@
 /* eslint-disable no-console */
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 const { findUser } = require('./user.model');
 
 const DB_COLLECTION = 'Recipes';
 
-const createRecipeModel = async (title, ingredients, directions, link, source, NER) => {
+const createRecipeModel = async (recipe) => {
   const connect = await connection();
 
   const { insertedId } = await connect
     .collection(DB_COLLECTION)
-    .insertOne({
-      title, ingredients, directions, link, source, NER,
-    });
+    .insertOne(recipe);
 
   return insertedId;
 };
@@ -34,11 +33,13 @@ const getRecipesModel = async (email) => {
     .find()
     .toArray();
 
-  const { restrictions } = await findUser(email);
+  const user = await findUser(email);
+
+  if (user.restrictions === null) return recipes;
 
   const restrictionRecipes = recipes
     .filter((recipe) => !recipe.NER
-      .some((ingredient) => restrictions
+      .some((ingredient) => user.restrictions
         .includes(ingredient)));
 
   return restrictionRecipes;
@@ -54,9 +55,18 @@ const getRecipesByTitleModel = async (variavelFront) => {
   return recipeTitle;
 };
 
+const findRecipeById = async (id) => {
+  const db = await connection();
+  const task = await db.collection(DB_COLLECTION)
+    .findOne({ _id: ObjectId(id) });
+
+  return task;
+};
+
 module.exports = {
   createRecipeModel,
   getRecipesModel,
   getRecipesByTitleModel,
   createRecipesModel,
+  findRecipeById,
 };

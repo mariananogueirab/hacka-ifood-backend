@@ -5,19 +5,15 @@ const {
   getRecipesService,
   getRecipesByTitleService,
   createRecipesService,
+  getRecipeById,
 } = require('../services/recipes.services');
 
 const createRecipeController = async (req, res, next) => {
   try {
-    const {
-      title, ingredients, directions, link, source, NER,
-    } = req.body;
+    const id = await createRecipeService(req.body);
 
-    const newRecipe = await createRecipeService(title, ingredients, directions, link, source, NER);
-
-    return res.status(201).json(newRecipe);
+    return res.status(201).json({ _id: id, ...req.body });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -28,20 +24,17 @@ const createRecipesController = async (req, res, next) => {
 
     return res.status(201).json({ message: 'Registered recipes' });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
 
 const getRecipesController = async (req, res, next) => {
   try {
-    const { email } = req.params;
-    console.log(email);
+    const { email } = req.user;
     const recipes = await getRecipesService(email);
 
     return res.status(200).json(recipes);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -53,7 +46,17 @@ const getRecipesByTitleController = async (req, res, next) => {
 
     return res.status(200).json(recipeTitle);
   } catch (error) {
-    console.log(error);
+    next(error);
+  }
+};
+
+const getRecipe = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const recipe = await getRecipeById(id);
+
+    return res.status(200).json(recipe);
+  } catch (error) {
     next(error);
   }
 };
@@ -63,4 +66,5 @@ module.exports = {
   getRecipesController,
   getRecipesByTitleController,
   createRecipesController,
+  getRecipe,
 };
