@@ -2,7 +2,7 @@
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
-const recipesRouter = require('./routes/recipes');
+const recipesRouter = require('./routes/recipes.router');
 const errorMiddleware = require('./middlewares/errorMidlleware');
 const user = require('./routes/user.router');
 const login = require('./routes/login.router');

@@ -4,12 +4,12 @@ const DB_COLLECTION = 'Users';
 
 const create = async (user) => {
   const {
-    username, email, password, restrictions,
+    name, email, password, restrictions,
   } = user;
   const db = await connect();
   const { insertedId } = await db.collection(DB_COLLECTION)
     .insertOne({
-      username, email, password, restrictions,
+      name, email, password, restrictions,
     });
   return insertedId;
 };
