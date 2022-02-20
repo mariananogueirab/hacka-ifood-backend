@@ -90,10 +90,11 @@ A requisição para a criação de usuário seguirá o formato:
 
 ```json
 {
-  "username": "mariananogueira_",
+  "name": "mariananogueira_",
   "email": "mariananbp@gmail.com",
   "password": "mari123",
-  "restrictions": ["intolerancia a lactose", "castanhas"]
+  "address": "Rua 1033A",
+  "restrictions": ["intolerancia a lactose", "castanhas"],
 }
 ```
 
@@ -108,9 +109,38 @@ A requisição para login seguirá o formato:
 
 Estrutura da tabela:
 
-|   username   |  email   |  password   |  restrictions   |
-| :----------: | :------: | :---------: | :-------------: |
-|   `string`   | `string` |   `string`  |     `array`     |
+|   name   |  email   |  password   |  address   |  restrictions   |
+| :------: | :------: | :---------: | :--------: | :-------------: |
+| `string` | `string` |   `string`  |  `string`  |     `array`     |
+
+---
+
+* Recipes
+
+O banco terá uma coleção chamada `Recipes`, apenas para meios de visibilidade. O ideal é usar o banco disponível em RecipeNLG, pois contém cerca de 2 milhões de receitas. Como o tempo era limitado e não tínhamos o conhecimento para importar um banco em Python, decidimos por mockar algumas receitas no mongoDB.
+
+A estrutura da receita segue a mesma de RecipeNLG, adicionamos apenas uma imagem para melhorar a visualização do usuário.
+
+```json
+{
+    "title": "No-Bake Nut Cookies",
+    "ingredients": ["1 c. firmly packed brown sugar", "1/2 c. evaporated milk", "1/2 tsp. vanilla", "1/2 c. broken nuts (pecans)", "2 Tbsp. butter or margarine", "3 1/2 c. bite size shredded rice biscuits"],
+    "directions": ["In a heavy 2-quart saucepan, mix brown sugar, nuts, evaporated milk and butter or margarine.", "Stir over medium heat until mixture bubbles all over top.", "Boil and stir 5 minutes more. Take off heat.", "Stir in vanilla and cereal; mix well.", "Using 2 teaspoons, drop and shape into 30 clusters on wax paper.", "Let stand until firm, about 30 minutes."],
+    "link": "www.cookbooks.com/Recipe-Details.aspx?id=44874",
+    "source": "Gathered",
+    "NER": ["brown sugar", "milk", "vanilla", "nuts", "butter", "bite size shredded rice biscuits"],
+    "image": "https://i.pinimg.com/originals/62/49/18/624918bd9cb58d152378c924ab84c4b0.jpg",
+  }
+```
+
+A receita está em inglês, então será necessário utilizar uma biblioteca de tradução automática. Como o tempo é curto, não implementamos essa função.
+
+
+Estrutura da tabela:
+
+|   title   |  ingredients |  directions  |   link   |  source   |   NER   |   image   |
+| :-------: | :----------: | :----------: | :------: | :-------: | :-----: | :-------: |
+| `string`  |   `array`    |    `array`   | `string` |  `string` | `array` |  `string` |
 
 ---
 
