@@ -4,15 +4,15 @@ const auth = require('../middlewares/auth');
 const {
   createRecipeController,
   getRecipesController,
-  /* getRecipesByTitleController, */
+  getRecipesByTitleController,
   createRecipesController,
   getRecipe,
 } = require('../controllers/recipes.controller');
 
 router.post('/', createRecipeController);
 router.post('/insert-many', createRecipesController);
+router.get('/all', auth, getRecipesController);
 router.get('/:id', auth, getRecipe);
-router.get('/', auth, getRecipesController);
-/* router.get('/', getRecipesByTitleController); */
+router.get('/', auth, getRecipesByTitleController);
 
 module.exports = router;

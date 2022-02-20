@@ -37,8 +37,6 @@ const userCreate = async (user) => {
 
   const { password: _password, ...userWithoutPassword } = user;
 
-  console.log(user);
-
   const token = generateToken(userWithoutPassword);
 
   return token;
